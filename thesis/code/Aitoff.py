@@ -1,0 +1,344 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr  3 18:28:32 2023
+
+@author: adri
+"""
+
+### All-sky Aitoff projection in Galactic coordinates
+
+
+
+from astropy.io import fits    
+from astropy import wcs    
+import matplotlib.pyplot as plt
+from astropy import units as u
+#from astropy.coordinates import SkyCoord
+from astropy.coordinates import Angle
+#from astropy.coordinates import Galactic
+import numpy as np
+
+hdulist = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/planetary_transits.fits')
+hdulist.info()
+dat = hdulist[1].data
+
+l=dat.field('l')
+b=dat.field('b')
+
+
+l = Angle(l * u.deg)
+l.wrap_at('180d', inplace=True)
+
+print(l)
+
+
+b = Angle(b * u.deg)
+b.wrap_at('90d', inplace=True)
+
+print(b)
+
+
+
+hdulist2 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/planetary_transits.fits')
+hdulist2.info()
+dat2 = hdulist2[1].data
+
+l2=dat2.field('l')
+b2=dat2.field('b')
+
+
+l2 = Angle(l2 * u.deg)
+l2.wrap_at('180d', inplace=True)
+
+print(l2)
+
+
+b2 = Angle(b2 * u.deg)
+b2.wrap_at('90d', inplace=True)
+
+print(b2)
+
+
+
+hdulist3 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/eclipsing_binaries.fits')
+hdulist3.info()
+dat3 = hdulist3[1].data
+
+l3=dat3.field('l')
+b3=dat3.field('b')
+
+
+l3 = Angle(l3 * u.deg)
+l3.wrap_at('180d', inplace=True)
+
+print(l3)
+
+
+b3 = Angle(b3 * u.deg)
+b3.wrap_at('90d', inplace=True)
+
+print(b3)
+
+
+
+hdulist4 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/eclipsing_binaries.fits')
+hdulist4.info()
+dat4 = hdulist4[1].data
+
+l4=dat4.field('l')
+b4=dat4.field('b')
+
+
+l4 = Angle(l4 * u.deg)
+l4.wrap_at('180d', inplace=True)
+
+print(l4)
+
+
+b4 = Angle(b4 * u.deg)
+b4.wrap_at('90d', inplace=True)
+
+print(b4)
+
+
+
+
+hdulist5 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/rrlyrae.fits')
+hdulist5.info()
+dat5 = hdulist5[1].data
+
+l5=dat5.field('l')
+b5=dat5.field('b')
+
+
+l5 = Angle(l5 * u.deg)
+l5.wrap_at('180d', inplace=True)
+
+print(l5)
+
+
+b5 = Angle(b5 * u.deg)
+b5.wrap_at('90d', inplace=True)
+
+print(b5)
+
+
+
+
+
+hdulist6 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/rrlyrae.fits')
+hdulist6.info()
+dat6 = hdulist6[1].data
+
+l6=dat6.field('l')
+b6=dat6.field('b')
+
+
+l6 = Angle(l6 * u.deg)
+l6.wrap_at('180d', inplace=True)
+
+print(l6)
+
+
+b6 = Angle(b6 * u.deg)
+b6.wrap_at('90d', inplace=True)
+
+print(b6)
+
+
+
+
+hdulist7 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/ms_oscillator.fits')
+hdulist7.info()
+dat7 = hdulist7[1].data
+
+l7=dat7.field('l')
+b7=dat7.field('b')
+
+#l7=np.array(l7)
+#b7=np.array(b7)
+
+l7 = Angle(l7 * u.deg)
+b7 = Angle(b7 * u.deg)
+
+print(l7)
+print(b7)
+
+#coords = SkyCoord(l7, b7, frame='galactic', unit = 'degree',representation_type = 'spherical')
+#l7 = coords.l7.wrap_at(180 * u.deg).radian
+#b7 = coords.b7.radian
+
+#l7 = Angle(l7 * u.deg)
+l7.wrap_at('180d', inplace=True)
+
+
+
+
+
+#b7 = Angle(b7 * u.deg)
+b7.wrap_at('90d', inplace=True)
+
+
+
+
+
+
+hdulist8 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/ms_oscillator.fits')
+hdulist8.info()
+dat8 = hdulist8[1].data
+
+l8=dat8.field('l')
+b8=dat8.field('b')
+
+#coords = SkyCoord(l8, b8, unit = 'degree')
+#l8 = coords.l8.wrap_at(180 * u.deg).radian
+#b8 = coords.b8.radian
+
+
+
+l8 = Angle(l8 * u.deg)
+l8.wrap_at('180d', inplace=True)
+
+print(l8)
+
+
+b8 = Angle(b8 * u.deg)
+b8.wrap_at('90d', inplace=True)
+
+print(b8)
+
+####
+
+#coords = SkyCoord(ra=data['ra'], dec=data['dec'], unit='degree')
+#ra = coords.ra.wrap_at(180 * units.deg).radian
+#dec = coords.dec.radian
+
+####
+
+hdulist9 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/short_timescale.fits')
+hdulist9.info()
+dat9 = hdulist9[1].data
+
+l9=dat9.field('l')
+b9=dat9.field('b')
+
+
+l9 = Angle(l9 * u.deg)
+l9.wrap_at('180d', inplace=True)
+
+print(l9)
+
+
+b9 = Angle(b9 * u.deg)
+b9.wrap_at('90d', inplace=True)
+
+print(b9)
+
+
+
+hdulist10 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/short_timescale.fits')
+hdulist10.info()
+dat10 = hdulist10[1].data
+
+l10=dat10.field('l')
+b10=dat10.field('b')
+
+
+l10 = Angle(l10 * u.deg)
+l10.wrap_at('180d', inplace=True)
+
+print(l10)
+
+
+b10 = Angle(b10 * u.deg)
+b10.wrap_at('90d', inplace=True)
+
+print(b10)
+
+
+
+hdulist11 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/rotation_modulation.fits')
+hdulist11.info()
+dat11 = hdulist11[1].data
+
+l11=dat11.field('l')
+b11=dat11.field('b')
+
+
+l11 = Angle(l11 * u.deg)
+l11.wrap_at('180d', inplace=True)
+
+print(l11)
+
+
+b11 = Angle(b11 * u.deg)
+b11.wrap_at('90d', inplace=True)
+
+print(b11)
+
+
+
+hdulist12 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/rotation_modulation.fits')
+hdulist12.info()
+dat12 = hdulist12[1].data
+
+l12=dat12.field('l')
+b12=dat12.field('b')
+
+
+l12 = Angle(l12 * u.deg)
+l12.wrap_at('180d', inplace=True)
+
+print(l12)
+
+
+b12 = Angle(b12 * u.deg)
+b12.wrap_at('90d', inplace=True)
+
+print(b12)
+
+
+
+hdulist13 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/long_period.fits')
+hdulist13.info()
+dat13 = hdulist13[1].data
+
+l13=dat13.field('l')
+b13=dat13.field('b')
+
+
+l13 = Angle(l13 * u.deg)
+l13.wrap_at('180deg', inplace=True)
+
+print(l13)
+
+
+b13 = Angle(b13 * u.deg)
+b13.wrap_at('90d', inplace=True)
+
+print(b13)
+
+
+fig = plt.figure(figsize=(15,10))
+ax = fig.add_subplot(1,1,1, projection='aitoff')
+
+ax.scatter(l, b, s=3, color='red', alpha=1, label = 'planetary transits')   
+ax.scatter(l2, b2, s=3, color='red', alpha=1)
+ax.scatter(l3, b3, s=2, color='blue', alpha=0.5, label = 'eclipsing binaries')   
+ax.scatter(l4, b4, s=2, color='blue', alpha=0.5)
+ax.scatter(l5, b5, s=3, color='green', alpha=1, label = 'RR Lyrae')   
+ax.scatter(l6, b6, s=3, color='green', alpha=1)   
+
+ax.scatter(l7, b7, s=3, color='magenta', alpha=1, label = 'MS oscillators')   
+ax.scatter(l8, b8, s=3, color='magenta', alpha=1)   
+
+ax.scatter(l9, b9, s=2, color='aqua', alpha=1, label = 'short-timescale variables')   
+ax.scatter(l10, b10, s=2, color='aqua', alpha=1)   
+ax.scatter(l11, b11, s=2, color='yellow', alpha=1, label = 'solar-like variables')   
+ax.scatter(l12, b12, s=2, color='yellow', alpha=1)   
+ax.scatter(l13, b13, s=3, color='black', alpha=1, label = 'long-period variables')   
+
+ax.grid()
+plt.legend(fontsize="7")
+plt.title('All-sky map in Galactic coordinates')
