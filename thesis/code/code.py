@@ -13,7 +13,7 @@ import pandas as pd
 # PIC from DR3 in csv format 
 # vari-tables from Gaia Archive in fits format 
 
-dir = '/media/adri/ANNA/Master_Thesis/'
+dir = 'Master_Thesis/'
 
 path1 = "PICtargetDR3/"
 path2 = "GDR3_Variability/"

@@ -11,25 +11,22 @@ Created on Mon Apr  3 18:28:32 2023
 
 
 from astropy.io import fits    
-from astropy import wcs    
 import matplotlib.pyplot as plt
 from astropy import units as u
-#from astropy.coordinates import SkyCoord
 from astropy.coordinates import Angle
-#from astropy.coordinates import Galactic
 import numpy as np
 
-hdulist = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/planetary_transits.fits')
+hdulist = fits.open('planetary_transits1.fits')
 hdulist.info()
 dat = hdulist[1].data
 
 l=dat.field('l')
 b=dat.field('b')
-print(f'PRINT L {l}')
+
 l = Angle(l * u.deg)
-print(f'PRINT L {l}')
 l.wrap_at('180d', inplace=True)
 
+print(l)
 
 b = Angle(b * u.deg)
 b.wrap_at('90d', inplace=True)
@@ -46,7 +43,7 @@ print(np.deg2rad(np.array(b)))
 
 
 
-hdulist2 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/planetary_transits.fits')
+hdulist2 = fits.open('planetary_transits2.fits')
 hdulist2.info()
 dat2 = hdulist2[1].data
 
@@ -70,7 +67,7 @@ l2 = np.deg2rad(np.array(l2))
 b2 = np.deg2rad(np.array(b2))
 
 
-hdulist3 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/eclipsing_binaries.fits')
+hdulist3 = fits.open('eclipsing_binaries1.fits')
 hdulist3.info()
 dat3 = hdulist3[1].data
 
@@ -93,7 +90,7 @@ l3 = np.deg2rad(np.array(l3))
 b3 = np.deg2rad(np.array(b3))
 
 
-hdulist4 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/eclipsing_binaries.fits')
+hdulist4 = fits.open('eclipsing_binaries2.fits')
 hdulist4.info()
 dat4 = hdulist4[1].data
 
@@ -116,7 +113,7 @@ l4 = np.deg2rad(np.array(l4))
 b4 = np.deg2rad(np.array(b4))
 
 
-hdulist5 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/rrlyrae.fits')
+hdulist5 = fits.open('rrlyrae1.fits')
 hdulist5.info()
 dat5 = hdulist5[1].data
 
@@ -140,7 +137,7 @@ l5 = np.deg2rad(np.array(l5))
 b5 = np.deg2rad(np.array(b5))
 
 
-hdulist6 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/rrlyrae.fits')
+hdulist6 = fits.open('rrlyrae2.fits')
 hdulist6.info()
 dat6 = hdulist6[1].data
 
@@ -164,7 +161,7 @@ l6 = np.deg2rad(np.array(l6))
 b6 = np.deg2rad(np.array(b6))
 
 
-hdulist7 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/ms_oscillator.fits')
+hdulist7 = fits.open('ms_oscillator1.fits')
 hdulist7.info()
 dat7 = hdulist7[1].data
 
@@ -189,7 +186,7 @@ b7 = np.deg2rad(np.array(b7))
 
 
 
-hdulist8 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/ms_oscillator.fits')
+hdulist8 = fits.open('ms_oscillator2.fits')
 hdulist8.info()
 dat8 = hdulist8[1].data
 
@@ -211,15 +208,9 @@ print(b8)
 l8 = np.deg2rad(np.array(l8))
 b8 = np.deg2rad(np.array(b8
                          ))
-####
 
-#coords = SkyCoord(ra=data['ra'], dec=data['dec'], unit='degree')
-#ra = coords.ra.wrap_at(180 * units.deg).radian
-#dec = coords.dec.radian
 
-####
-
-hdulist9 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/short_timescale.fits')
+hdulist9 = fits.open('short_timescale1.fits')
 hdulist9.info()
 dat9 = hdulist9[1].data
 
@@ -242,7 +233,7 @@ l9 = np.deg2rad(np.array(l9))
 b9 = np.deg2rad(np.array(b9))
 
 
-hdulist10 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/short_timescale.fits')
+hdulist10 = fits.open('short_timescale2.fits')
 hdulist10.info()
 dat10 = hdulist10[1].data
 
@@ -264,7 +255,7 @@ print(b10)
 l10 = np.deg2rad(np.array(l10))
 b10 = np.deg2rad(np.array(b10))
 
-hdulist11 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lopn1/rotation_modulation.fits')
+hdulist11 = fits.open('rotation_modulation1.fits')
 hdulist11.info()
 dat11 = hdulist11[1].data
 
@@ -287,7 +278,7 @@ l11 = np.deg2rad(np.array(l11))
 b11 = np.deg2rad(np.array(b11))
 
 
-hdulist12 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/rotation_modulation.fits')
+hdulist12 = fits.open('rotation_modulation2.fits')
 hdulist12.info()
 dat12 = hdulist12[1].data
 
@@ -310,7 +301,7 @@ l12 = np.deg2rad(np.array(l12))
 b12 = np.deg2rad(np.array(b12))
 
 
-hdulist13 = fits.open('/media/adri/ANNA/Master_Thesis/tables/lops2/long_period.fits')
+hdulist13 = fits.open('long_period2.fits')
 hdulist13.info()
 dat13 = hdulist13[1].data
 
@@ -333,7 +324,7 @@ l13 = np.deg2rad(np.array(l13))
 b13 = np.deg2rad(np.array(b13))
 
 
-fig = plt.figure(figsize=(15,10))
+fig = plt.figure(figsize=(15,12))
 ax = fig.add_subplot(1,1,1, projection='aitoff')
 
 ax.scatter(l, b, s=3, color='red', alpha=1, label = 'planetary transits')   
@@ -355,5 +346,5 @@ ax.scatter(l12, b12, s=2, color='yellow', alpha=1)
 ax.scatter(l13, b13, s=3, color='black', alpha=1, label = 'long-period variables')   
 
 ax.grid()
-plt.legend(fontsize="7")
-plt.title('All-sky map in Galactic coordinates')
+plt.legend(fontsize="10", loc ="lower right")
+plt.title('All-sky map in Galactic coordinates\n')
