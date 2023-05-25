@@ -195,6 +195,33 @@ for i in range(N6):
         G6[i] = g6[i] +5 *( 1+np.log10 (p6[i]/1000) ) - ag6[i]
 
 
+#cepheids
+hdulist7 = fits.open('cepheid1.fits')
+hdulist7.info()
+dat7 = hdulist7[1].data
+
+g7=dat7.field('median_mag_g_fov')
+bp7=dat7.field('median_mag_bp')
+rp7=dat7.field('median_mag_rp')
+p7=dat7.field("parallax")
+ag7 = dat7.field("ag_gspphot") 
+
+print(g7)
+print(bp7)
+print(rp7)
+print(p7)
+print(ag7)
+
+N7 = len(g7)
+
+color7=np.zeros(N7,float)
+G7=np.zeros(N7,float)
+
+i=0
+for i in range(N7):
+        color7[i]=bp7[i]-rp7[i]
+        G7[i] = g7[i] +5 *( 1+np.log10 (p7[i]/1000) ) - ag7[i]
+
 
 
 
@@ -206,6 +233,7 @@ plt.scatter(color6,G6,color='red',marker = '.',  label = ' short time variables'
 plt.scatter(color3,G3,color='forestgreen',marker = '.',  label = 'MS oscillators')
 plt.scatter(color4,G4,color='orange',marker = '.',  label = 'solar-like variables')
 plt.scatter(color1,G1,color='aqua',marker = '.',  label = 'planetary transits')
+plt.scatter(color7,G7,color='black',marker = '.',  label = 'cepheids')
 
 
 plt.legend(fontsize="15")

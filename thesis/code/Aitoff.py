@@ -324,26 +324,46 @@ l13 = np.deg2rad(np.array(l13))
 b13 = np.deg2rad(np.array(b13))
 
 
+hdulist14 = fits.open('cepheid1.fits')
+hdulist14.info()
+dat14 = hdulist14[1].data
+
+l14=dat14.field('l')
+b14=dat14.field('b')
+
+
+l14 = Angle(l14 * u.deg)
+l14.wrap_at('180deg', inplace=True)
+
+print(l14)
+
+
+b14 = Angle(b14 * u.deg)
+b14.wrap_at('90d', inplace=True)
+
+print(b14)
+
+l14 = np.deg2rad(np.array(l14))
+b14 = np.deg2rad(np.array(b14))
+
+
 fig = plt.figure(figsize=(15,12))
 ax = fig.add_subplot(1,1,1, projection='aitoff')
 
 ax.scatter(l, b, s=3, color='red', alpha=1, label = 'planetary transits')   
-
 ax.scatter(l2, b2, s=3, color='red', alpha=1)
-
 ax.scatter(l3, b3, s=2, color='navy', alpha=0.5, label = 'eclipsing binaries')   
 ax.scatter(l4, b4, s=2, color='navy', alpha=0.5)
 ax.scatter(l5, b5, s=3, color='green', alpha=1, label = 'RR Lyrae')   
 ax.scatter(l6, b6, s=3, color='green', alpha=1)   
-
 ax.scatter(l7, b7, s=3, color='magenta', alpha=1, label = 'MS oscillators')   
 ax.scatter(l8, b8, s=3, color='magenta', alpha=1)   
-
 ax.scatter(l9, b9, s=2, color='aqua', alpha=1, label = 'short-timescale variables')   
 ax.scatter(l10, b10, s=2, color='aqua', alpha=1)   
 ax.scatter(l11, b11, s=2, color='yellow', alpha=1, label = 'solar-like variables')   
 ax.scatter(l12, b12, s=2, color='yellow', alpha=1)   
 ax.scatter(l13, b13, s=3, color='black', alpha=1, label = 'long-period variables')   
+ax.scatter(l14, b14, s=3, color='orange', alpha=1, label = 'Cepheids')   
 
 ax.grid()
 plt.legend(fontsize="10", loc ="lower right")
