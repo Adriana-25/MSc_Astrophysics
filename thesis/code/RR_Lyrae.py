@@ -580,7 +580,8 @@ print(rad)
 print(rad_err)
 print(time)
 
-### RRab 2926381228470699392 folded
+
+# RRab 863983115982280448 folded
 
 RV=[]
 RV_err=[]
@@ -588,7 +589,7 @@ t=[]
 
 i=0
 for i in range(len(rad)):
-    if (s[i] == 2926381228470699392): #  2926381228470699392   ### Rab
+    if (s[i] == 863983115982280448): 
         RV.append(rad[i])
         RV_err.append(rad_err[i])
         t.append(time[i])
@@ -602,19 +603,18 @@ print(RV_err)
 print(t)
 
 
-plt.figure(figsize=(15, 10))  
+plt.figure(figsize=(15, 10)) 
 
-pf=0.53739 # 2926381228470699392
-phase =  ((t - 1803.98457 - pf/2) / pf/2) % 1 - 0.5 # 2926381228470699392
-
+pf=0.571825454511598 
+phase =  ((t - 1777.6643036858682 - pf/2) / pf/2) % 1 - 0.5 
+# 1803.98457
 #convert time to a color tuple using the colormap used for scatter
 
-norm = matplotlib.colors.Normalize(vmin=min(RV), vmax=max(RV), clip=True)
+norm = matplotlib.colors.Normalize(vmin=-340, vmax=-240, clip=True)
 mapper = cm.ScalarMappable(norm=norm, cmap='inferno')
 phase_color = np.array([(mapper.to_rgba(v)) for v in RV])
 
-plt.figure(figsize=(15, 10))    
-plt.text(x = 0, y = 70, s = "RRab 2926381228470699392 P=0.537 (d)", horizontalalignment='center', color = 'gray')
+plt.text(x = 0, y = -230, s = "RRab 863983115982280448 P=0.572 (d)", horizontalalignment='center', color = 'gray')
 #loop over each data point to plot
 for x, y, e, color in zip(phase, RV, RV_err, phase_color):  
    plt.scatter(x,y, c=color, s = 150)
@@ -622,23 +622,133 @@ for x, y, e, color in zip(phase, RV, RV_err, phase_color):
    plt.legend(fontsize = 15, loc = "best")
    plt.xlabel("Phase")
    plt.ylabel('Radial velocity (km/s)')
-   plt.ylim(-30,80) 
+   plt.ylim(-360,-220) 
    plt.title('Epoch RV')
 #plt.show() 
-
 
 # this source shows the saw-tooth shape
 
 
 
 
+##########################
+
+#XP SAMPLED MEAN SPECTRA
+
+# source_id 1985008784705347456
+# this is a RRc star pulsating with fundamental period p1 = 0.38031 
+
+
+hdulist = fits.open('XP_SAMPLED-Gaia DR3 1985008784705347456.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 80)
+plt.errorbar(wave, flux, flux_err, lw=1, capsize=4)
+plt.text(x = 800, y = 3.7*1e-16, s = "RRc Lyrae Gaia DR3 1985008784705347456", horizontalalignment='center', color = 'gray')
+
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+#plt.ylim(-30,25) 
+plt.title('XP mean spectrum')
+plt.show()
+
+
+
+
+# source_id 863983115982280448
+# this is a RRab star pulsating with fundamental period pf = 0.57183 
+
+hdulist = fits.open('XP_SAMPLED-Gaia DR3 863983115982280448.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 80)
+plt.errorbar(wave, flux, flux_err, lw=1, capsize=4)
+plt.text(x = 800, y = 3.7*1e-16, s = "RRab Lyrae Gaia DR3 863983115982280448", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+#plt.ylim(-30,25) 
+plt.title('XP mean spectrum')
+plt.show()
 
 
 
 
 
 
+###############
 
+# RVS MEAN SPECTRA
+
+# source_id 863983115982280448
+# this is a RRab star pulsating with fundamental period pf = 0.57183 
+
+hdulist = fits.open('RVS-Gaia DR3 863983115982280448.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 40)
+plt.errorbar(wave, flux, flux_err, lw=0.5, capsize=4)
+plt.text(x = 858, y = 1.3, s = "RRab Lyrae Gaia DR3 863983115982280448", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel("normalized flux")
+#plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+plt.ylim(0.5,1.4) 
+plt.title('RVS mean spectrum')
+plt.show()
+
+
+
+
+# source_id 5839493134002800896
+# this is a RRc star pulsating with first overtone period p1 = 0.329
+
+hdulist = fits.open('RVS-Gaia DR3 5839493134002800896.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 40)
+plt.errorbar(wave, flux, flux_err, lw=0.5, capsize=3)
+plt.text(x = 858, y = 1.1, s = "RRc Lyrae Gaia DR3 5839493134002800896", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel("normalized flux")
+#plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+plt.ylim(0.5,1.2) 
+plt.title('RVS mean spectrum')
+plt.show()
 
 
 

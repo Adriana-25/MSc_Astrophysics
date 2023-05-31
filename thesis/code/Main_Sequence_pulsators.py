@@ -408,3 +408,64 @@ plt.show()
 
 
 # From ADQL query interface in Gaia Archive, all MS pulsators result DSCT|GDOR|SXPHE
+
+
+
+
+###################
+
+
+# XP SPECTRA
+
+# Gaia DR3 393326065521087616
+
+hdulist = fits.open('XP_SAMPLED-Gaia DR3 393326065521087616.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 80)
+plt.errorbar(wave, flux, flux_err, lw=1, capsize=4)
+plt.text(x = 800, y = 4.25*1e-15, s = "MS oscillator Gaia DR3 393326065521087616", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+#plt.ylim(-30,25) 
+plt.title('XP mean spectrum')
+plt.show()
+
+
+#####################
+
+# RVS SPECTRA
+
+# Gaia DR3 5607501093981045504
+
+hdulist = fits.open('RVS-Gaia DR3 5607501093981045504.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 40)
+plt.errorbar(wave, flux, flux_err, lw=0.5, capsize=3)
+plt.text(x = 858, y = 1.3, s = "MS oscillator Gaia DR3 5607501093981045504", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel("normalized flux")
+#plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+plt.ylim(0.4,1.4) 
+plt.title('RVS mean spectrum')
+plt.show()
+

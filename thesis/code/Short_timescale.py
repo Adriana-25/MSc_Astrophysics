@@ -355,3 +355,67 @@ plt.ylabel('Magnitude (mag)')
 plt.title('Epoch photometry')
 plt.show()
 
+
+
+
+
+########################################à
+
+# xp spectra
+
+# Gaia DR3 4594961454434214144
+
+
+hdulist = fits.open('XP_SAMPLED-Gaia DR3 4594961454434214144.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 80)
+plt.errorbar(wave, flux, flux_err, lw=1, capsize=4)
+plt.text(x = 800, y = 1.5*1e-15, s = "Short timescale Gaia DR3 4594961454434214144", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+#plt.ylim(-30,25) 
+plt.title('XP mean spectrum')
+plt.show()
+
+
+
+########################################
+
+# rvs spectra
+
+
+# Gaia DR3 6344493361434378624
+
+hdulist = fits.open('RVS-Gaia DR3 6344493361434378624.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 40)
+plt.errorbar(wave, flux, flux_err, lw=0.5, capsize=3)
+plt.text(x = 858, y = 1.15, s = "Short timescale Gaia DR3 6344493361434378624", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel("normalized flux")
+#plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+plt.ylim(0.75,1.2) 
+plt.title('RVS mean spectrum')
+plt.show()
+
+

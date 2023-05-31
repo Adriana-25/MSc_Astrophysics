@@ -443,3 +443,68 @@ plt.plot(time, amplitude, label = 'fit ')
 plt.legend(fontsize = 15, loc = "best")
 
 plt.show()
+
+
+
+
+
+###########################
+
+# XP SPECTRA
+
+# Gaia DR3 393450310336818176
+
+hdulist = fits.open('XP_SAMPLED-Gaia DR3 393450310336818176.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 80)
+plt.errorbar(wave, flux, flux_err, lw=1, capsize=4)
+plt.text(x = 800, y = 2.15*1e-15, s = "Solar-like Gaia DR3 393450310336818176", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+#plt.ylim(-30,25) 
+plt.title('XP mean spectrum')
+plt.show()
+
+
+
+
+
+######################################à
+
+#RVS SPECTRA
+
+# Gaia DR3 1496482535683660800   
+
+hdulist = fits.open('RVS-Gaia DR3 1496482535683660800.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 40)
+plt.errorbar(wave, flux, flux_err, lw=0.5, capsize=3)
+plt.text(x = 858, y = 1.2, s = "Solar-like Gaia DR3 1496482535683660800", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel("normalized flux")
+#plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+plt.ylim(0.3,1.3) 
+plt.title('RVS mean spectrum')
+plt.show()
+
+

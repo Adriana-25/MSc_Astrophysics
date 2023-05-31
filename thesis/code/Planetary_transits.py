@@ -541,3 +541,72 @@ plt.xlabel("Phase")
 plt.ylabel('Magnitude (mag)')
 plt.title('Epoch photometry')
 plt.show()
+
+
+
+
+
+
+
+############################
+
+# XP SPECTRA
+
+# Gaia DR3 1864885215233116032
+
+hdulist = fits.open('LANETARY/XP_SAMPLED-Gaia DR3 1864885215233116032.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 80)
+plt.errorbar(wave, flux, flux_err, lw=1, capsize=4)
+plt.text(x = 800, y = 7.5*1e-16, s = "Exoplanet host Gaia DR3 1864885215233116032", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+#plt.ylim(-30,25) 
+plt.title('XP mean spectrum')
+plt.show()
+
+
+
+
+############################
+
+# RVS SPECTRA
+
+# Gaia DR3 2102117871259036672    Kepler-7
+
+hdulist = fits.open('RVS-Gaia DR3 2102117871259036672.fits')
+
+hdulist.info()
+dat = hdulist[1].data
+
+
+wave=dat.field('wavelength')
+flux = dat.field("flux")
+flux_err=dat.field("flux_error")
+
+plt.figure(figsize=(15, 10)) 
+plt.scatter(wave,flux, c='blue', s = 40)
+plt.errorbar(wave, flux, flux_err, lw=0.5, capsize=3)
+plt.text(x = 858, y = 1.3, s = "Exoplanet host Gaia DR3 2102117871259036672", horizontalalignment='center', color = 'gray')
+plt.legend(fontsize = 15, loc = "best")
+plt.xlabel("$\lambda$ (nm)")
+plt.ylabel("normalized flux")
+#plt.ylabel(r'$ \mathrm{ \nu F(\nu) (erg \cdot m^{-2} s^{-1} nm^{-1}) }$')
+plt.ylim(0.2,1.4) 
+plt.title('RVS mean spectrum')
+plt.show()
+
+
+
+
+
